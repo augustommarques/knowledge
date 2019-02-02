@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" :class="{ 'hide-menu': !isMenuVisible || !user }">
+    <Header
+      title="First project Vue"
+      :hideToggle="!user"
+      :hideUserDropdown="!user"
+    ></Header>
+    <Menu v-if="user" />
+    <Loading v-if="validatingToken" />
+    <Content v-else></Content>
+    <Footer />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/template/Header";
+import Menu from "./components/template/Menu";
+import Loading from "./components/template/Loading";
+import Content from "./components/template/Content";
+import Footer from "./components/template/Footer";
+// import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Menu,
+    Loading,
+    Content,
+    Footer,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
